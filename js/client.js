@@ -126,7 +126,7 @@ var vaccineFunction = function()
 {
     $("#displayImage").empty();
     let vaccineImage = $("<img>")
-        .attr("src", "img/vaccine.gif")
+        .attr("src", "img/vaccine.gif"+"?a="+Math.random())     //This is necessary to reload the GIF to make it start over. 
         .attr("alt", "vaccination");
 
     $("#displayImage").prepend(vaccineImage);
@@ -212,10 +212,23 @@ var caveFunction = function()
 {
     $("#displayImage").empty();
     let caveImage = $("<img>")
-        .attr("src", "img/batcave.gif")
+        //https://stackoverflow.com/questions/3191922/restart-an-animated-gif-from-javascript-without-reloading-the-image
+        .attr("src", "img/batcave.gif"+"?a="+Math.random())    //This is necessary to reload the GIF to make it start over. 
         .attr("alt", "the inside of the cave");
 
     $("#displayImage").prepend(caveImage);
+};
+
+var aboutFunction = function()
+{
+    var ghLink = $("<div>").append($("<a>")
+        .attr("href", "https://github.com/wkneiszel/adventures-in-jquery")
+        .text("View the source code on GitHub"));
+    var piskelLink = $("<div>").append($("<a>")
+        .attr("href", "https://www.piskelapp.com/")
+        .text("Art made using Piskel"));
+    
+    $("#buttonArea").prepend(ghLink).prepend(piskelLink);
 };
 
 var caveExteriorFunction = function()
@@ -299,10 +312,17 @@ var start = new storyNode(
     groundsFunction
 );
 
+var about = new storyNode(
+    "About this game",
+    "Adventures in jQuery was created by Wilson Kneiszel for an assignment for CS365: Client-Side Web Programming.",
+    [],
+    aboutFunction
+);
+
 var titleScreen = new storyNode(
-    "Title Screen",
+    "Title screen",
     "You are an adventurer journeying to your home: the castle. You have been on many great exploits but this is the tale of your triumphant return.",
-    [start],
+    [start, about],
     defaultFunction
 );
 
@@ -310,5 +330,6 @@ batFight.actions.push(batFight);
 walk.actions.push(start);
 caveExit.actions.push(cave, start);
 vaccinate.actions.push(cave, start);
+about.actions.push(titleScreen);
 
 titleScreen.display();
