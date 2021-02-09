@@ -124,6 +124,13 @@ var defeatFunction = function()
 
 var vaccineFunction = function()
 {
+    $("#displayImage").empty();
+    let vaccineImage = $("<img>")
+        .attr("src", "img/vaccine.gif")
+        .attr("alt", "vaccination");
+
+    $("#displayImage").prepend(vaccineImage);
+
     hp = 3;
     vaccinated = true;
     rabiesCalculation();
@@ -131,7 +138,8 @@ var vaccineFunction = function()
 
 var exitFunction = function()
 {
-    $("#displayImage").empty();
+    caveExteriorFunction();
+
     if(vaccinated == false && hp < 3)
     {
         if(caveExit.actions.indexOf(vaccinate) == -1)
@@ -190,6 +198,37 @@ var damageFunction = function(){
     rabiesCalculation();
 };
 
+var groundsFunction = function()
+{
+    $("#displayImage").empty();
+    let groundsImage = $("<img>")
+        .attr("src", "img/castlegrounds.gif")
+        .attr("alt", "the castle grounds");
+
+    $("#displayImage").prepend(groundsImage);
+};
+
+var caveFunction = function()
+{
+    $("#displayImage").empty();
+    let caveImage = $("<img>")
+        .attr("src", "img/batcave.gif")
+        .attr("alt", "the inside of the cave");
+
+    $("#displayImage").prepend(caveImage);
+};
+
+var caveExteriorFunction = function()
+{
+    $("#displayImage").empty();
+
+    let caveImage = $("<img>")
+        .attr("src", "img/caveexterior.gif")
+        .attr("alt", "the cave");
+
+    $("#displayImage").prepend(caveImage);
+}
+
 var rabiesDeath = new storyNode(
     "Die of rabies",
     "You contracted rabies back there during your bat-related encounter, and unfortunately you are now met with the consequences of your actions. You die a horrible death, foaming at the mouth and flailing about in agony. You should have gotten that vaccine when you had the chance.",
@@ -243,7 +282,7 @@ var cave = new storyNode(
     "Enter the cave",
     "You are in a cave. You hear the sound of bats overhead.",
     [batFight, caveExit],
-    defaultFunction
+    caveFunction
 )
 
 var walk = new storyNode(
@@ -257,7 +296,7 @@ var start = new storyNode(
     "Go to the castle grounds",
     "You are on the castle grounds. The castle is ahead. It is a beautiful summer's day.",
     [meadow, castle, walk],
-    defaultFunction
+    groundsFunction
 );
 
 var titleScreen = new storyNode(
