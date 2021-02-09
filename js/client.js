@@ -68,6 +68,12 @@ var defaultFunction = function()
 var victoryFunction = function()
     {
         $("#displayImage").empty();
+        let victoryImage = $("<img>")
+        .attr("src", "img/castle.gif")
+        .attr("alt", "the castle welcomes you");
+
+        $("#displayImage").prepend(victoryImage);
+
         $("body")
             .css("background-color", "yellow")
             .css("color", "black");
@@ -160,7 +166,8 @@ var damageFunction = function(){
     }
 
     let biteImage = $("<img>")
-        .attr("src", "img/bite.gif"+"?a="+Math.random())    //This is necessary to reload the GIF to make it start over.
+        //https://stackoverflow.com/questions/3191922/restart-an-animated-gif-from-javascript-without-reloading-the-image
+        .attr("src", "img/bite.gif"+"?a="+Math.random())    //This is necessary to reload the GIF to make it start over. 
         .attr("alt", "the mouth of an angry bat");
 
     $("#displayImage").prepend(biteImage);
