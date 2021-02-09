@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+    font-family: 'VT323', 'monospace';
+    color: white;
+}
+
+#mainDisplay{
+    width: 100%;
+    font-size: 40px;
+    margin: auto;
+    margin-top: 10%;
+    text-align: justify;
+    hyphens: auto;
+    position: relative;
+}
+
+#displayImage{
+    text-align: center;
+}
+
+#displayImage > img{
+    outline: 10px solid black;
+    width: 320px;
+    background-color: rgb(61, 61, 61);
+}
+
+#buttonArea{
+    text-align: center;
+}
+
+.action{
+    padding: 10px;
+    font-size: 20px;
+    background: none;
+    outline: 3px solid white;
+    color: white;
+    font-family: 'VT323', 'monospace';
+    margin: 10px;
+}
+
+.action:hover{
+    background-color: white;
+    color: black;
+}
+
+@media(min-width: 800px) {
+    #mainDisplay {
+        width: 800px;
+    }
+}
