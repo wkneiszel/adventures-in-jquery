@@ -260,9 +260,16 @@ var start = new storyNode(
     defaultFunction
 );
 
+var titleScreen = new storyNode(
+    "Title Screen",
+    "You are an adventurer journeying to your home: the castle. You have been on many great exploits but this is the tale of your triumphant return.",
+    [start],
+    defaultFunction
+);
+
 batFight.actions.push(batFight);
 walk.actions.push(start);
 caveExit.actions.push(cave, start);
 vaccinate.actions.push(cave, start);
 
-start.display();
+titleScreen.display();
