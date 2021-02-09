@@ -45,7 +45,8 @@ var hp = 3;
 var vaccinated = true;
 var rabiesProgression = 0;
 
-function rabiesCalculation(){
+function rabiesCalculation()
+{
     if(vaccinated == false)
     {
         rabiesProgression += 1;
@@ -59,6 +60,17 @@ function rabiesCalculation(){
     }
 }
 
+function setImage(source, alternateText)
+{
+    $("#displayImage").empty();
+
+    let image = $("<img>")
+        .attr("src", source+"?a="+Math.random())     //This is necessary to reload the GIF to make it start over. 
+        .attr("alt", alternateText);
+
+    $("#displayImage").prepend(image);
+}
+
 var defaultFunction = function()
 {
     $("#displayImage").empty();
@@ -67,12 +79,7 @@ var defaultFunction = function()
 
 var victoryFunction = function()
     {
-        $("#displayImage").empty();
-        let victoryImage = $("<img>")
-        .attr("src", "img/castle.gif")
-        .attr("alt", "the castle welcomes you");
-
-        $("#displayImage").prepend(victoryImage);
+        setImage("img/castle.gif", "the castle welcomes you");
 
         $("body")
             .css("background-color", "yellow")
@@ -98,12 +105,7 @@ var victoryFunction = function()
 
 var defeatFunction = function()
 {
-    $("#displayImage").empty();
-    let deathimage = $("<img>")
-        .attr("src", "img/death.gif")
-        .attr("alt", "your ghost");
-
-    $("#displayImage").prepend(deathimage);
+    setImage("img/death.gif", "your grave");
 
     $("body")
         .css("background-color", "red");
@@ -124,12 +126,7 @@ var defeatFunction = function()
 
 var vaccineFunction = function()
 {
-    $("#displayImage").empty();
-    let vaccineImage = $("<img>")
-        .attr("src", "img/vaccine.gif"+"?a="+Math.random())     //This is necessary to reload the GIF to make it start over. 
-        .attr("alt", "vaccination");
-
-    $("#displayImage").prepend(vaccineImage);
+    setImage("img/vaccine.gif", "our hero being vaccinated against rabies");
 
     hp = 3;
     vaccinated = true;
@@ -158,11 +155,9 @@ var exitFunction = function()
     }
     
     caveExit.makeButtons();
-    rabiesCalculation();
 };
 
 var damageFunction = function(){
-    $("#displayImage").empty();
 
     vaccinated = false;
     hp -= 1;
@@ -173,12 +168,7 @@ var damageFunction = function(){
         return;
     }
 
-    let biteImage = $("<img>")
-        //https://stackoverflow.com/questions/3191922/restart-an-animated-gif-from-javascript-without-reloading-the-image
-        .attr("src", "img/bite.gif"+"?a="+Math.random())    //This is necessary to reload the GIF to make it start over. 
-        .attr("alt", "the mouth of an angry bat");
-
-    $("#displayImage").prepend(biteImage);
+    setImage("img/bite.gif", "a bat bites you");
 
     $("#mainDisplay")
         .animate({left: '-=10px'}, 100)
@@ -200,23 +190,16 @@ var damageFunction = function(){
 
 var groundsFunction = function()
 {
-    $("#displayImage").empty();
-    let groundsImage = $("<img>")
-        .attr("src", "img/castlegrounds.gif")
-        .attr("alt", "the castle grounds");
+    setImage("img/castlegrounds.gif", "the castle grounds");
 
-    $("#displayImage").prepend(groundsImage);
+    rabiesCalculation();
 };
 
 var caveFunction = function()
 {
-    $("#displayImage").empty();
-    let caveImage = $("<img>")
-        //https://stackoverflow.com/questions/3191922/restart-an-animated-gif-from-javascript-without-reloading-the-image
-        .attr("src", "img/batcave.gif"+"?a="+Math.random())    //This is necessary to reload the GIF to make it start over. 
-        .attr("alt", "the inside of the cave");
+    setImage("img/batcave.gif", "the inside of the cave");
 
-    $("#displayImage").prepend(caveImage);
+    rabiesCalculation();
 };
 
 var aboutFunction = function()
@@ -233,13 +216,9 @@ var aboutFunction = function()
 
 var caveExteriorFunction = function()
 {
-    $("#displayImage").empty();
+    setImage("img/caveexterior.gif", "the outside of the cave");
 
-    let caveImage = $("<img>")
-        .attr("src", "img/caveexterior.gif")
-        .attr("alt", "the cave");
-
-    $("#displayImage").prepend(caveImage);
+    rabiesCalculation();
 }
 
 var rabiesDeath = new storyNode(
