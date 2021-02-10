@@ -204,6 +204,10 @@ var caveFunction = function()
 
 var aboutFunction = function()
 {
+    $("#mainDisplay")
+        .css("top", "+100vh")
+        .animate({top: "-=100vh"}, 1000);
+
     var ghLink = $("<div>").append($("<a>")
         .attr("href", "https://github.com/wkneiszel/adventures-in-jquery")
         .text("View the source code on GitHub"));
@@ -293,7 +297,7 @@ var start = new storyNode(
 
 var about = new storyNode(
     "About this game",
-    "Adventures in jQuery was created by Wilson Kneiszel for an assignment for CS365: Client-Side Web Programming.",
+    "Adventures in jQuery was created by Wilson Kneiszel for an assignment for CS365: Client-Side Web Programming. It features an object-oriented design, and makes heavy use of first-class functions in JavaScript. Though the story be not complicated, it features 12 different screens, which can be found by viewing the source code or by discovering each one naturally by interacting with the game. There is one happy ending and three sad endings. Happy adventuring!",
     [],
     aboutFunction
 );
